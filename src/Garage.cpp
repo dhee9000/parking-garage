@@ -10,25 +10,41 @@ Garage::Garage(int num_levels, int spots_level, int spots_row)
     this->SPOTS_L = spots_level;
     this->SPOTS_R = spots_row;
 
-    this->SMALL_L = (1 / 5) * spots_level;
-    this->MEDIUM_L = (3 / 5) * spots_level;
-    this->LARGE_L = (1 / 5) * spots_level;
+    this->ROWS_L = spots_level/spots_row;
 
-    for(int lev = 0; lev <= LEVELS; lev++){
+    this->SMALL_L = 20 * SPOTS_L / 100;
+    this->MEDIUM_L = 60 * SPOTS_L / 100;
+    this->LARGE_L = 20 * SPOTS_L / 100;
 
-        // Create small spots in level
-        for(int s = 0; s <= SMALL_L; s++){
-            spots->push_back(new Spot(0));
-        }
-        //Create medium spots in level
-        for(int m = 0; m <= MEDIUM_L; m++){
-            spots->push_back(new Spot(1));
-        }
-        //Create large spots in level
-        for(int l = 0; l <= MEDIUM_L; l++){
-            spots->push_back(new Spot(1));
-        }
+    cout << "\nGarage created: " << endl;
+    cout << "Levels: " << LEVELS << endl;
+    cout << "Spots Per Level: " << SPOTS_L << endl;
+    cout << "SPOTS Per Row: " << SPOTS_R << endl << endl;
+    
+    cout << SMALL_L << " small spots per level." << endl;
+    cout << MEDIUM_L << " medium spots per level." << endl;
+    cout << LARGE_L << " large spots per level." << endl << endl;
 
+    cout << "Creating Spots..." << endl;
+
+    this->spots = new Spot[SPOTS_L*LEVELS];
+
+    for (int i = 0; i < LEVELS; i++)
+    {
+        for (int s = 0; s < SPOTS_L; s++)
+        {
+            
+            if(s<SMALL_L){
+                spots[i*SPOTS_L + s] = *(new Spot(0));
+            }
+            else if(s<MEDIUM_L){
+                spots[i*SPOTS_L + s] = *(new Spot(1));
+            }
+            else if(s<LARGE_L){
+                spots[i*SPOTS_L + s] = *(new Spot(2))
+                ;
+            }
+        }
     }
 }
 
@@ -42,10 +58,20 @@ void Garage::clearGarage()
 
 string Garage::toString()
 {
-    string garageString;
-    char Key[4] = "mcl";
-    for(unsigned int i = 0; i < spots->size(); i++){ // Unsigned int to avoid warning when comparing to size (unsigned)
-        garageString += to_string(spots->at(i)->getType());
+    string garageString = "\nGarage View: ";
+
+    char Key[] = "mcl";
+
+    for (int i = 0; i < SPOTS_L*LEVELS; i++)
+    {
+        if (i% SPOTS_L == 0)
+        {
+            garageString += "\n";
+            garageString += "LEVEL: " + to_string(LEVELS - i/SPOTS_L);
+        }
+
+        garageString +=  Key[spots[i].getType()];
+
     }
     return garageString;
 }

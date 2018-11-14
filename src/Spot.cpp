@@ -5,7 +5,7 @@ Spot::Spot() {
 }
 
 Spot::Spot(int t) {
-    this->type = (t<3 && t>0)? t:1;
+    this->type = (t<3 && t>0)? t:99;
 }
 
 Spot::~Spot() {

@@ -7,7 +7,7 @@ INCLUDE	:= include
 LIB		:= lib
 
 LIBRARIES	:=
-EXECUTABLE	:= Test.exe
+EXECUTABLE	:= ParkingGarageProject.exe
 
 
 all: $(BIN)/$(EXECUTABLE)

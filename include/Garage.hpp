@@ -13,11 +13,12 @@ class Garage {
         int SPOTS_L;
         int SPOTS_R;
         int LARGE_L;
-        int MEDIUM_L;
-        int SMALL_L;
-        int ROWS_L;
+        float MEDIUM_L;
+        float SMALL_L;
+        float ROWS_L;
 
-        vector<Spot*>* spots = new vector<Spot*>;
+        Spot* spots;
+        int size;
 
     public:
         Garage();
