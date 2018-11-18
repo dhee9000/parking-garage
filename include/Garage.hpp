@@ -20,6 +20,10 @@ class Garage {
         Spot* spots;
         int size;
 
+        Spot* firstCarSpot;
+        Spot* firstMotorcycleSpot;
+        Spot* firstBusSpot;
+
     public:
         Garage();
         Garage(int num_levels, int spots_level, int spots_row);
@@ -27,4 +31,6 @@ class Garage {
 
         void clearGarage();
         string toString();
+        int park(Vehicle* v);
+        int findFirst(int type);
 };

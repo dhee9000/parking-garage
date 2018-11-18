@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Windows) Launch",
-            "type": "cppvsdbg",
+            "name": "Launch (GDB)",
+            "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/${workspaceFolderBasename}.exe",
             "args": [],
@@ -14,7 +14,10 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "MIMode": "gdb",
+            "logging": { "engineLogging": true },
+            "miDebuggerPath": "C:\\MinGW\\mingw64\\bin\\gdb.exe",
             "preLaunchTask": "Build Windows",
-        }
+        },
     ]
 }

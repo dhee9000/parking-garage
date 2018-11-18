@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 #include "Garage.hpp"
@@ -40,8 +41,8 @@ int main()
             cout << "Spots Per Row: ";
             cin >> SPOTS_PER_ROW;
 
-            cout << "Verifiying Garage Parameters...";
-        } while (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0));
+            cout << "Verifiying Garage Parameters..." << endl;
+        } while (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0 && SPOTS_PER_LEVEL > 0 && SPOTS_PER_ROW>0 && SPOTS_PER_ROW<=SPOTS_PER_LEVEL));
     }
     else
     {
@@ -55,28 +56,71 @@ int main()
 
     cout << "Valid Garage Parameters!" << endl;
 
-    Garage *g = new Garage(NUM_OF_LEVELS, SPOTS_PER_LEVEL, SPOTS_PER_ROW);
-    g->clearGarage();
-    cout << g->toString();
+    Garage *myGarage = new Garage(NUM_OF_LEVELS, SPOTS_PER_LEVEL, SPOTS_PER_ROW);
+    myGarage->clearGarage();
+    cout << myGarage->toString() << endl;
 
     char action = 'v'; // Default to View Garage
 
     do
     {
         // Action legend (first letter of choice)
-        cout << "Choose an action: " << endl;
+        cout << "\nActions:: " << endl;
         cout << "(p)ark a vehicle" << endl;
         cout << "(r)eturn a vehicle" << endl;
         cout << "(v)iew garage" << endl;
         cout << "(e)xit" << endl;
+        cout << "Select One: ";
 
         cin >> action;
         cin.ignore(); // Safe Input
+        
+        cout << endl;
 
         switch(action){
             case 'v':
             {
-                g->toString();
+                cout << myGarage->toString() << endl;
+                break;
+            }
+            case 'p':
+            {
+                int vType;
+                cout << "What type of vehicle?" << endl;
+                cout << "0 - Motorcycle" << endl;
+                cout << "1 - Car" << endl;
+                cout << "2 - Bus" << endl;
+                cout << "3 - Other" << endl;
+                cin >> vType;
+
+                if(vType<4 && vType>-1){
+                    Vehicle* myV = new Vehicle(vType);
+                    cout << "Your vehicle has ID " <<  myV->getID() << endl;
+                    cout << "Your valet token is " << setfill('0') << setw(3) << myGarage->park(myV) << endl;
+                    cout << 
+                }
+                else{
+                    cout << "This garage currently doesn't support that vehicle type!" << endl;
+                }
+                break;
+            }
+            case 'r':
+            {
+                int token;
+                cout << "Enter the token of the vehicle to return" << endl;
+                cin >> token;
+                break;
+            }
+            case 'e':
+            {
+                string confirmation = "";
+                cout << "Are you sure you'd like to exit? (yes/No): ";
+                cin >> confirmation;
+                
+                if(confirmation != "yes"){
+                    action = 'v';
+                }
+                break;
             }
             default:
             {
@@ -86,4 +130,6 @@ int main()
         }
 
     } while(action != 'e');
+
+    cout << "\nProgram Exiting!" << endl;
 }
