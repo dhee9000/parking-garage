@@ -29,7 +29,7 @@ Garage::Garage(int num_levels, int spots_level, int spots_row)
 
     cout << "Creating Spots..." << endl;
 
-    this->size = SPOTS_L*LEVELS;
+    this->size = SPOTS_L * LEVELS;
     this->spots = new Spot[size];
 
     for (int i = 0; i < LEVELS; i++)
@@ -68,18 +68,42 @@ void Garage::clearGarage()
 {
 }
 
-int Garage::park(Vehicle* v)
+int Garage::park(Vehicle *v)
 {
     int t = v->getType();
     int token = -1;
     int first = this->findFirst(t);
-    if(first != -1){ // There is an available spot
+    if (first != -1)
+    { // There is an available spot
         token = first;
-        if(t < 2){ // It is a car or motorcycle, only need one spot
+        if (t < 2)
+        { // It is a car or motorcycle, only need one spot
             this->spots[first].parkSpot(v);
         }
     }
     return token;
+}
+
+Vehicle *Garage::returnVehicle(int token)
+{
+    Vehicle* v;
+    if(token < this->size){
+        cout << "Token Valid!" << endl;
+        if(this->spots[token].isTaken()){
+            cout << "Vehicle Found!" << endl;
+            v = this->spots[token].releaseSpot();
+            cout << "Spot Released!" << endl;
+            if(this->spots[token].getVehicleType() == 2){
+                for(int i = 1; i<=4; i++){
+                    this->spots[token+i].releaseSpot();
+                }
+            }
+            return v;
+        }
+    }
+    else{
+        cout << "Token out of bounds!" << endl;
+    }
 }
 
 string Garage::toString()
@@ -98,19 +122,25 @@ string Garage::toString()
     return garageString;
 }
 
-int Garage::findFirst(int type){
+int Garage::findFirst(int type)
+{
     int idx = -1; // Initialize to error state, returns not found
-    for(int i = 0; i <= size; i++){
+    for (int i = 0; i <= size; i++)
+    {
         Spot s = this->spots[i];
-        if(!s.isTaken() && s.getType() == type){
+        if (!s.isTaken() && s.getType() == type)
+        {
             idx = i;
             break;
         }
     }
-    if(idx == -1){ // Couldn't find a regular spot to park in, look for alternatives (bigger spot, smaller vehicle)
-        for(int i = 0; i <= size; i++){
+    if (idx == -1)
+    { // Couldn't find a regular spot to park in, look for alternatives (bigger spot, smaller vehicle)
+        for (int i = 0; i <= size; i++)
+        {
             Spot s = this->spots[i];
-            if(!s.isTaken() && s.getType() >= type){
+            if (!s.isTaken() && s.getType() >= type)
+            {
                 cout << "Matching spot type couldn't be found, using larger spot for small vehicle!" << endl;
                 idx = i;
                 break;

@@ -1,42 +1,57 @@
 #include "Spot.hpp"
 
-Spot::Spot() {
-
+Spot::Spot()
+{
 }
 
-Spot::Spot(int t) {
-    this->type = (t<3 && t>=0)? t:99;
+Spot::Spot(int t)
+{
+    this->type = (t < 3 && t >= 0) ? t : 99;
 }
 
-Spot::~Spot() {
-
+Spot::~Spot()
+{
 }
 
-void Spot::parkSpot(Vehicle* v){
+void Spot::parkSpot(Vehicle *v)
+{
     this->taken = true;
     this->vehicle = v;
 }
 
-int Spot::releaseSpot(){
+Vehicle* Spot::releaseSpot()
+{
     this->taken = false;
-    int statusCode = -1;
-    this->vehicle = nullptr;
-    return statusCode;
+    return this->vehicle;
 }
 
-bool Spot::isTaken(){
+bool Spot::isTaken()
+{
     return (this->taken);
 }
 
-int Spot::getType(){
+int Spot::getType()
+{
     return (this->type);
 }
 
-string Spot::toString(){
+int Spot::getVehicleType(){
     if(this->isTaken()){
-        return this->vehicle->toString();
+        return this->vehicle->getType();
     }
     else{
+        return -1;
+    }
+}
+
+string Spot::toString()
+{
+    if (this->isTaken())
+    {
+        return this->vehicle->toString();
+    }
+    else
+    {
         string Key = "mcl";
         return string() + Key[this->type];
     }

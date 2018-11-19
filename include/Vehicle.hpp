@@ -5,18 +5,19 @@
 
 using namespace std;
 
-class Vehicle {
+class Vehicle
+{
 
-    private:
-        /* 
+  private:
+    /* 
          * 0 - Motorcycle
          * 1 - Car 
          * 2 - Bus
          */
-        int type;
-        long int id;
+    int type;
+    long int id;
 
-public:
+  public:
     Vehicle();
     ~Vehicle();
 

@@ -42,7 +42,7 @@ int main()
             cin >> SPOTS_PER_ROW;
 
             cout << "Verifiying Garage Parameters..." << endl;
-        } while (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0 && SPOTS_PER_LEVEL > 0 && SPOTS_PER_ROW>0 && SPOTS_PER_ROW<=SPOTS_PER_LEVEL));
+        } while (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0 && SPOTS_PER_LEVEL > 0 && SPOTS_PER_ROW > 0 && SPOTS_PER_ROW <= SPOTS_PER_LEVEL));
     }
     else
     {
@@ -74,62 +74,77 @@ int main()
 
         cin >> action;
         cin.ignore(); // Safe Input
-        
+
         cout << endl;
 
-        switch(action){
-            case 'v':
-            {
-                cout << myGarage->toString() << endl;
-                break;
-            }
-            case 'p':
-            {
-                int vType;
-                cout << "What type of vehicle?" << endl;
-                cout << "0 - Motorcycle" << endl;
-                cout << "1 - Car" << endl;
-                cout << "2 - Bus" << endl;
-                cout << "3 - Other" << endl;
-                cin >> vType;
+        switch (action)
+        {
+        case 'v':
+        {
+            cout << myGarage->toString() << endl;
+            break;
+        }
+        case 'p':
+        {
+            int vType;
+            cout << "What type of vehicle?" << endl;
+            cout << "0 - Motorcycle" << endl;
+            cout << "1 - Car" << endl;
+            cout << "2 - Bus" << endl;
+            cout << "3 - Other" << endl;
+            cin >> vType;
 
-                if(vType<4 && vType>-1){
-                    Vehicle* myV = new Vehicle(vType);
-                    cout << "Your vehicle has ID " <<  myV->getID() << endl;
-                    cout << "Your valet token is " << setfill('0') << setw(3) << myGarage->park(myV) << endl;
-                    cout << 
-                }
-                else{
-                    cout << "This garage currently doesn't support that vehicle type!" << endl;
-                }
-                break;
-            }
-            case 'r':
+            if (vType < 4 && vType > -1)
             {
-                int token;
-                cout << "Enter the token of the vehicle to return" << endl;
-                cin >> token;
-                break;
-            }
-            case 'e':
-            {
-                string confirmation = "";
-                cout << "Are you sure you'd like to exit? (yes/No): ";
-                cin >> confirmation;
-                
-                if(confirmation != "yes"){
-                    action = 'v';
+                Vehicle *myV = new Vehicle(vType);
+                cout << "\nYour vehicle has ID " << myV->getID() << endl;
+
+                int token = myGarage->park(myV);
+                if (token != -1)
+                {
+                    cout << "Your valet token is " << setfill('0') << setw(3) << token << endl;
                 }
-                break;
+                else
+                {
+                    cout << "Parking Lot Full!" << endl;
+                }
             }
-            default:
+            else
             {
-                cout << "Invalid Selection! Please choose again!" << endl;
+                cout << "This garage currently doesn't support that vehicle type!" << endl;
+            }
+            break;
+        }
+        case 'r':
+        {
+            int token;
+            cout << "Enter the token of the vehicle to return" << endl;
+            cin >> token;
+            cout << "Retrieving vehicle..." << endl;
+            Vehicle* v = myGarage->returnVehicle(token);
+            cout << "Returned vehicle with ID " << v->getID() << endl;
+            break;
+        }
+        case 'e':
+        {
+            string confirmation = "";
+            cout << "Are you sure you'd like to exit? (yes/No): ";
+            cin >> confirmation;
+
+            if (confirmation != "yes")
+            {
                 action = 'v';
             }
+            break;
+        }
+        default:
+        {
+            cout << "Invalid Selection! Please choose again!" << endl;
+            action = 'v';
+        }
         }
 
-    } while(action != 'e');
+    } while (action != 'e');
 
     cout << "\nProgram Exiting!" << endl;
 }

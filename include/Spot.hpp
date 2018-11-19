@@ -5,25 +5,26 @@
 
 using namespace std;
 
-class Spot {
+class Spot
+{
 
-    private:
+  private:
+    int type = 0;
+    // type 0 = motorcycle
+    // type 1 = compact
+    // type 2 = large
+    bool taken = false;
+    Vehicle *vehicle;
 
-        int type = 0;
-        // type 0 = motorcycle
-        // type 1 = compact
-        // type 2 = large
-        bool taken = false;
-        Vehicle* vehicle;
+  public:
+    Spot();
+    Spot(int type);
+    ~Spot();
 
-    public:
-        Spot();
-        Spot(int type);
-        ~Spot();
-
-        bool isTaken();
-        int getType();
-        void parkSpot(Vehicle* v);
-        int releaseSpot();
-        string toString();
+    bool isTaken();
+    int getType();
+    int getVehicleType();
+    void parkSpot(Vehicle *v);
+    Vehicle* releaseSpot();
+    string toString();
 };
