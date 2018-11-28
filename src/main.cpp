@@ -121,8 +121,7 @@ int main()
             cout << "Enter the token of the vehicle to return" << endl;
             cin >> token;
             cout << "Retrieving vehicle..." << endl;
-            Vehicle* v = myGarage->returnVehicle(token);
-            cout << "Returned vehicle with ID " << v->getID() << endl;
+            myGarage->returnVehicle(token);
             break;
         }
         case 'e':

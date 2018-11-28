@@ -33,6 +33,6 @@ public:
   void clearGarage();
   string toString();
   int park(Vehicle *v);
-  Vehicle *returnVehicle(int token);
+  void returnVehicle(int token);
   int findFirst(int type);
 };
