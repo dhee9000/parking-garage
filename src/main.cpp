@@ -1,3 +1,16 @@
+/* 
+Author: Dheeraj Yalamanchili
+Class: CS2336.001 (CPP)
+Project: ParkingGarageProject
+*/
+
+/*
+main.cpp description:
+
+Driver / runner for the entire project, accepts user input, instantiates garage and performs operations on it.
+
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -94,7 +107,7 @@ int main()
             cout << "3 - Other" << endl;
             cin >> vType;
 
-            if (vType < 4 && vType > -1)
+            if (vType < 3 && vType > -1)
             {
                 Vehicle *myV = new Vehicle(vType);
                 cout << "\nYour vehicle has ID " << myV->getID() << endl;

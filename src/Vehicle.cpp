@@ -1,3 +1,9 @@
+/* 
+Author: Dheeraj Yalamanchili
+Class: CS2336.001 (CPP)
+Project: ParkingGarageProject
+*/
+
 #include "Vehicle.hpp"
 
 long int getTime()

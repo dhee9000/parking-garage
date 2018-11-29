@@ -1,3 +1,9 @@
+/* 
+Author: Dheeraj Yalamanchili
+Class: CS2336.001 (CPP)
+Project: ParkingGarageProject
+*/
+
 #include "Spot.hpp"
 
 Spot::Spot()
@@ -19,7 +25,7 @@ void Spot::parkSpot(Vehicle *v)
     this->vehicle = v;
 }
 
-Vehicle* Spot::releaseSpot()
+Vehicle *Spot::releaseSpot()
 {
     this->taken = false;
     return this->vehicle;
@@ -35,11 +41,14 @@ int Spot::getType()
     return (this->type);
 }
 
-int Spot::getVehicleType(){
-    if(this->isTaken()){
+int Spot::getVehicleType()
+{
+    if (this->isTaken())
+    {
         return this->vehicle->getType();
     }
-    else{
+    else
+    {
         return -1;
     }
 }

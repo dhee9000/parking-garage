@@ -1,3 +1,9 @@
+/* 
+Author: Dheeraj Yalamanchili
+Class: CS2336.001 (CPP)
+Project: ParkingGarageProject
+*/
+
 #include "Garage.hpp"
 
 Garage::Garage()
@@ -80,8 +86,10 @@ int Garage::park(Vehicle *v)
         { // It is a car or motorcycle, only need one spot
             this->spots[first].parkSpot(v);
         }
-        else{
-            for(int i = 0; i < 5; i++){
+        else
+        {
+            for (int i = 0; i < 5; i++)
+            {
                 this->spots[first + i].parkSpot(v);
             }
         }
@@ -91,24 +99,30 @@ int Garage::park(Vehicle *v)
 
 void Garage::returnVehicle(int token)
 {
-    Vehicle* v;
-    if(token < this->size){
+    Vehicle *v;
+    if (token < this->size)
+    {
         cout << "Token Valid!" << endl;
-        if(this->spots[token].isTaken()){
+        if (this->spots[token].isTaken())
+        {
             cout << "Vehicle Found!" << endl;
-            v = this->spots[token].releaseSpot();
-            if(this->spots[token].getVehicleType() == 2){
-                for(int i = 1; i<=4; i++){
-                    this->spots[token+i].releaseSpot();
+            if (this->spots[token].getVehicleType() == 2)
+            {
+                for (int i = 1; i < 5; i++)
+                {
+                    this->spots[token + i].releaseSpot();
                 }
             }
+            v = this->spots[token].releaseSpot();
             cout << "Returned vehicle with ID " << v->getID() << endl;
         }
-        else{
+        else
+        {
             cout << "There is no vehicle parked at this spot!" << endl;
         }
     }
-    else{
+    else
+    {
         cout << "Token out of bounds!" << endl;
     }
 }
@@ -137,17 +151,21 @@ int Garage::findFirst(int type)
         Spot s = this->spots[i];
         if (!s.isTaken() && s.getType() == type)
         {
-            if(type < 2){
+            if (type < 2)
+            {
                 idx = i;
                 break;
             }
-            else if (type == 2){
+            else if (type == 2)
+            {
                 bool canParkBus = true;
-                for(int n = 1; n < 5; n++){
-                    if(this->spots[i+n].isTaken() || this->spots[i+n].getType() != type)
+                for (int n = 1; n < 5; n++)
+                {
+                    if (this->spots[i + n].isTaken() || this->spots[i + n].getType() != type)
                         canParkBus = false;
                 }
-                if(canParkBus){
+                if (canParkBus)
+                {
                     idx = i;
                     break;
                 }
@@ -156,7 +174,8 @@ int Garage::findFirst(int type)
     }
     if (idx == -1)
     { // Couldn't find a regular spot to park in, look for alternatives (bigger spot, smaller vehicle)
-        if(type < 2){
+        if (type < 2)
+        {
             for (int i = 0; i <= size; i++)
             {
                 Spot s = this->spots[i];

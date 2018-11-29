@@ -1,3 +1,17 @@
+/* 
+Author: Dheeraj Yalamanchili
+Class: CS2336.001 (CPP)
+Project: ParkingGarageProject
+*/
+
+/*
+Garage Class Description:
+
+The Garage Class represents a Parking garage and consists of Spots which can hold Vehicles.
+The Garage Class holds information about a Parking Garage like the parameters with which it was built
+and information about its current state like the first available spot for different types of vehicles.
+*/
+
 #pragma once
 #include <vector>
 #include <iostream>
@@ -20,10 +34,6 @@ private:
 
   Spot *spots;
   int size;
-
-  Spot *firstCarSpot;
-  Spot *firstMotorcycleSpot;
-  Spot *firstBusSpot;
 
 public:
   Garage();
