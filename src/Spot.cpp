@@ -12,19 +12,25 @@ Spot::Spot()
 
 Spot::Spot(int t)
 {
-    this->type = (t < 3 && t >= 0) ? t : 99;
+    this->type = (t < 3 && t >= 0) ? t : -1; // Ensures type is within bounds.
 }
 
 Spot::~Spot()
 {
 }
 
+/*
+Sets the vehicle belonging to this spot and changes isTaken state of Spot.
+*/
 void Spot::parkSpot(Vehicle *v)
 {
     this->taken = true;
     this->vehicle = v;
 }
 
+/*
+Removes vehicle from spot and changes isTaken state of Spot.
+*/
 Vehicle *Spot::releaseSpot()
 {
     this->taken = false;
@@ -41,6 +47,9 @@ int Spot::getType()
     return (this->type);
 }
 
+/*
+getVehicleType checks if spot is occupied and if it is, it returns the type of the vehicle occupying it.
+*/
 int Spot::getVehicleType()
 {
     if (this->isTaken())
@@ -53,6 +62,11 @@ int Spot::getVehicleType()
     }
 }
 
+/*
+toString method returns the string representation of the current state of the Spot.
+It checks if there is a vehicle present and if there is it returns the toString of the Vehicle
+Else it returns the type of the Spot.
+*/
 string Spot::toString()
 {
     if (this->isTaken())

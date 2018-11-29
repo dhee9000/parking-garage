@@ -1,0 +1,38 @@
+Smart Garage User Instructions
+Dheeraj Yalamanchili (DXY170002)
+
+GETTING STARTED:
+
+1)      Launch Smart Garage
+
+2) a)   You will be greeted with a menu and a prompt asking whether or not
+        you would like to supply your own Garage Parameters or create a Garage
+        with the default parameters. 
+
+            Enter yes (y, yes, YES, Y) or no (n, no, NO, N)
+
+2) b)   If you selected no, skip this step.
+
+        If you selected yes, enter your custom Garage parameters. They must
+        follow the Garage parameter rules in order to be validated. If you
+        enter incorrect parameters, the program will warn you about which rules
+        were broken.
+
+            Enter Garage Parameters
+
+3)      Choose an action to perform on the Garage.
+
+ACTIONS:
+
+View:
+    Enter (v) to view the current state of the Garage.
+
+Park:
+    Enter (p) to park a vehicle. Then enter the number corresponding to the Vehicle type. The program
+    will return a token. YOU MUST KEEP THIS TOKEN TO RETRIEVE THE VEHICLE.
+
+Retrieve:
+    Enter (r) to retrieve a vehicle. Then enter the token received upon parking to retrieve the vehicle.
+
+Exit:
+    Enter (e) to exit. Then confirm by entering yes (y, yes, YES, Y).

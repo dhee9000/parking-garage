@@ -19,9 +19,15 @@ Driver / runner for the entire project, accepts user input, instantiates garage 
 
 using namespace std;
 
-template<typename myType>
-void getInput(myType &inputVar){
-    
+/*
+getInput is a template function that takes in a reference to a varible and tries to extract from
+cin onto that variable.
+It checks if cin enters a failure state and if it does, it corrects and tries again.
+*/
+template <typename myType>
+void getInput(myType &inputVar)
+{
+
     cin >> inputVar;
 
     while (!cin)
@@ -31,7 +37,6 @@ void getInput(myType &inputVar){
         cout << "Invalid selection! Try again: " << endl;
         cin >> inputVar; // After cin is restored and any garbage in the stream has been cleared, store user input in number again
     }
-
 }
 
 int main()
@@ -47,20 +52,25 @@ int main()
 
     // Begin User Interaction
 
-    cout << "Welcome to Smart Garage v0.0.1" << endl;
+    cout << "Welcome to Smart Garage" << endl;
+    cout << "AUTHOR: Dheeraj Yalamanchili (DXY170002)\n" << endl;
 
-    while (customGarage != "yes" && customGarage != "no")
+    while (customGarage != "yes" && customGarage != "Y" && customGarage != "y" && customGarage != "YES" && customGarage != "Yes" && customGarage != "no" && customGarage != "n" && customGarage != "N" && customGarage != "No")
     {
         cout << "Would you like to define a custom garage? (yes/no)? >";
-        
+
         getInput(customGarage);
     }
 
-    if (customGarage == "yes")
+    if (!(customGarage != "yes" && customGarage != "Y" && customGarage != "y" && customGarage != "YES" && customGarage != "Yes"))
     {
         cout << "Please input the following garage parameters:" << endl;
+
+        bool parametersValid = false;
+
         do
         {
+            // Parameter Input
             cout << "Number of Levels: ";
             getInput(NUM_OF_LEVELS);
 
@@ -70,8 +80,28 @@ int main()
             cout << "Spots Per Row: ";
             getInput(SPOTS_PER_ROW);
 
-            cout << "Verifiying Garage Parameters..." << endl;
-        } while (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0 && SPOTS_PER_LEVEL > 0 && SPOTS_PER_ROW > 0 && SPOTS_PER_ROW <= SPOTS_PER_LEVEL));
+            cout << "\nVerifiying Garage Parameters..." << endl;
+
+            // Parameter Validation and Rules Display
+            if (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0 && SPOTS_PER_LEVEL >= 5 && SPOTS_PER_ROW >= 5 && SPOTS_PER_ROW % 5 == 0))
+            {
+                cout << "Input Parameters Invalid!" << endl;
+                cout << "\nRULES: " << endl;
+                cout << boolalpha;
+                cout << "Spots Per Level must be greater than or equal to Spots Per Row: " << (SPOTS_PER_LEVEL >= SPOTS_PER_ROW) << endl;
+                cout << "Spots Per Level must be divisible by Spots Per Row: " << (SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0) << endl;
+                cout << "Spots Per Level must be divisible by 5: " << (SPOTS_PER_LEVEL % 5 == 0) << endl;
+                cout << "There must be at least one Level: " << (NUM_OF_LEVELS > 0) << endl;
+                cout << "There must be at least five Spots Per Row: " << (SPOTS_PER_LEVEL >= 5) << endl;
+                cout << "There must be at least five Spots Per Row: " << (SPOTS_PER_ROW >= 5) << endl
+                     << endl;
+            }
+            else
+            {
+                parametersValid = true;
+            }
+
+        } while (!parametersValid);
     }
     else
     {
@@ -85,11 +115,12 @@ int main()
 
     cout << "Valid Garage Parameters!" << endl;
 
+    // Construct and clear garage with garage parameters
     Garage *myGarage = new Garage(NUM_OF_LEVELS, SPOTS_PER_LEVEL, SPOTS_PER_ROW);
     myGarage->clearGarage();
     cout << myGarage->toString() << endl;
 
-    char action = 'v'; // Default to View Garage
+    char action = 'v'; // Default action to View Garage
 
     do
     {
@@ -105,6 +136,7 @@ int main()
 
         cout << endl;
 
+        // Check and execute whichever action was selected
         switch (action)
         {
         case 'v':
@@ -120,22 +152,22 @@ int main()
             cout << "1 - Car" << endl;
             cout << "2 - Bus" << endl;
             cout << "3 - Other" << endl;
-            
+
             getInput(vType);
 
             if (vType < 3 && vType > -1)
             {
                 Vehicle *myV = new Vehicle(vType);
-                cout << "\nYour vehicle has ID " << myV->getID() << endl;
+                cout << "\nYour vehicle has ID " << myV->getID() << endl; // Gets Vehicle ID from Vehicle
 
-                int token = myGarage->park(myV);
-                if (token != -1)
+                int token = myGarage->park(myV); // Attempt Parking
+                if (token != -1)                 // Parking Successful!
                 {
                     cout << "Your valet token is " << setfill('0') << setw(3) << token << endl;
                 }
-                else
+                else // Spot couldn't be found!
                 {
-                    cout << "Parking Lot Full!" << endl;
+                    cout << "Parking lot full or no spots available for this vehicle!" << endl;
                 }
             }
             else
@@ -151,7 +183,7 @@ int main()
 
             getInput(token);
 
-            cout << "Retrieving vehicle..." << endl;
+            cout << "\nRetrieving vehicle..." << endl;
             myGarage->returnVehicle(token);
             break;
         }
@@ -159,10 +191,10 @@ int main()
         {
             string confirmation = "";
             cout << "Are you sure you'd like to exit? (yes/No): ";
-            
+
             getInput(confirmation);
 
-            if (confirmation != "yes")
+            if (confirmation != "yes" && confirmation != "Y" && confirmation != "y" && confirmation != "YES" && confirmation != "Yes")
             {
                 action = 'v';
             }

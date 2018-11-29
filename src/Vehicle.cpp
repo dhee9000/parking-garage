@@ -6,6 +6,10 @@ Project: ParkingGarageProject
 
 #include "Vehicle.hpp"
 
+/*
+getTime method returns the UNIX timestamp when it's called.
+This is used to generate the Vehicle's ID.
+*/
 long int getTime()
 {
     time_t t = std::time(0);
@@ -15,7 +19,7 @@ long int getTime()
 
 Vehicle::Vehicle()
 {
-    id = getTime();
+    id = getTime(); // ID is set to current UNIX timestamp
 }
 
 Vehicle::~Vehicle()
@@ -25,7 +29,7 @@ Vehicle::~Vehicle()
 Vehicle::Vehicle(int t)
 {
     id = getTime();
-    this->type = t;
+    this->type = t; // If type is provided, type is also set.
 }
 
 int Vehicle::getType()
@@ -33,6 +37,11 @@ int Vehicle::getType()
     return this->type;
 }
 
+/*
+toString method is used in printing Car Garage. It's utility is to return a string representation
+of the vehicle the instance represents.
+It returns M for motorcycle, C for car, and B for bus.
+*/
 string Vehicle::toString()
 {
     char Key[] = "MCB";

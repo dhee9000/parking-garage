@@ -1,0 +1,222 @@
+Welcome to Smart Garage
+AUTHOR: Dheeraj Yalamanchili (DXY170002)
+
+Would you like to define a custom garage? (yes/no)? >yes
+Please input the following garage parameters:
+Number of Levels: 1
+Spots Per Level: 21
+Spots Per Row: 7
+
+Verifiying Garage Parameters...
+Input Parameters Invalid!
+
+RULES:
+Spots Per Level must be greater than or equal to Spots Per Row: true
+Spots Per Level must be divisible by Spots Per Row: true
+Spots Per Level must be divisible by 5: false
+There must be at least one Level: true
+There must be at least five Spots Per Row: true
+There must be at least five Spots Per Row: true
+
+Number of Levels: 4
+Spots Per Level: 30
+Spots Per Row: 10
+
+Verifiying Garage Parameters...
+Valid Garage Parameters!
+
+Garage created:
+Levels: 4
+Spots Per Level: 30
+SPOTS Per Row: 10
+
+6 small spots per level.
+18 medium spots per level.
+6 large spots per level.
+
+Creating Spots...
+First Compact Spot is 6
+First Motorcycle Spot is 0
+First Large Spot is 24
+
+Garage View:
+LEVEL 4: mmmmmmccccccccccccccccccllllll
+LEVEL 3: mmmmmmccccccccccccccccccllllll
+LEVEL 2: mmmmmmccccccccccccccccccllllll
+LEVEL 1: mmmmmmccccccccccccccccccllllll
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+0
+
+Your vehicle has ID 1543499835
+Your valet token is 000
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+0
+
+Your vehicle has ID 1543499837
+Your valet token is 001
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+1
+
+Your vehicle has ID 1543499838
+Your valet token is 006
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+1
+
+Your vehicle has ID 1543499839
+Your valet token is 007
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+2
+
+Your vehicle has ID 1543499842
+Your valet token is 024
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+2
+
+Your vehicle has ID 1543499843
+Your valet token is 054
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+2
+
+Your vehicle has ID 1543499845
+Your valet token is 084
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: p
+
+What type of vehicle?
+0 - Motorcycle
+1 - Car
+2 - Bus
+3 - Other
+2
+
+Your vehicle has ID 1543499846
+Your valet token is 114
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: v
+
+
+Garage View:
+LEVEL 4: MMmmmmCCccccccccccccccccBBBBBl
+LEVEL 3: mmmmmmccccccccccccccccccBBBBBl
+LEVEL 2: mmmmmmccccccccccccccccccBBBBBl
+LEVEL 1: mmmmmmccccccccccccccccccBBBBBl
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: r
+
+Enter the token of the vehicle to return
+114
+
+Retrieving vehicle...
+Token Valid!
+Vehicle Found!
+Returned vehicle with ID 1543499846
+
+Actions::
+(p)ark a vehicle
+(r)eturn a vehicle
+(v)iew garage
+(e)xit
+Select One: e
+
+Are you sure you'd like to exit? (yes/No): y
+
+Program Exiting!

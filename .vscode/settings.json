@@ -3,7 +3,8 @@
         "*.tpp": "cpp",
         "vector": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "string": "cpp"
     },
     "terminal.integrated.shell.windows": "cmd.exe"
 }

@@ -1022,7 +1022,7 @@
 											"top": 483,
 											"width": 214,
 											"height": 13,
-											"text": "+Vehicle(id: int)",
+											"text": "+Vehicle(type: int)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2246,7 +2246,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFnXg1onodmegY="
 									},
-									"name": "id",
+									"name": "type",
 									"type": "int"
 								}
 							]

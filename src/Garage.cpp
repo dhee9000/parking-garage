@@ -10,6 +10,14 @@ Garage::Garage()
 {
 }
 
+/*
+Parametric constructor takes in num of levels, spots per level, and spots per row
+
+It sets the class variables to these values and then creates an array of Spot objects each
+initialized to their appropriate type based on the distribution of the types of spots in each level.
+
+This constructor assumes the input values being fed are valid for a Garage.
+*/
 Garage::Garage(int num_levels, int spots_level, int spots_row)
 {
     this->LEVELS = num_levels;
@@ -46,17 +54,14 @@ Garage::Garage(int num_levels, int spots_level, int spots_row)
             if (s < SMALL_L)
             {
                 spots[i * SPOTS_L + s] = *(new Spot(0)); // Motorcycle
-                cout << "MSpot" << endl;
             }
             else if (s < MEDIUM_L + SMALL_L)
             {
                 spots[i * SPOTS_L + s] = *(new Spot(1)); // Compact
-                cout << "CSpot" << endl;
             }
             else if (s < LARGE_L + MEDIUM_L + SMALL_L)
             {
                 spots[i * SPOTS_L + s] = *(new Spot(2)); // Large
-                cout << "LSpot" << endl;
             }
         }
     }
@@ -68,12 +73,22 @@ Garage::Garage(int num_levels, int spots_level, int spots_row)
 
 Garage::~Garage()
 {
+    delete this->spots; // Free up dynamically allocated memory.
 }
 
 void Garage::clearGarage()
 {
+
 }
 
+/*
+The park tries to park a vehicle and returns the token if successful, else -1.
+
+It uses the findFirst method to find the first spot of vehicle type and then parks it.
+If the vehicle is a bus, it automatically parks the bus in the next 4 spaces as well since buses take 5 spaces.
+It also has a function where if a spot of the type of the vehicle couldn't be found, it looks for a bigger spot
+that could still hold the vehicle and uses that instead.
+*/
 int Garage::park(Vehicle *v)
 {
     int t = v->getType();
@@ -97,6 +112,13 @@ int Garage::park(Vehicle *v)
     return token;
 }
 
+/*
+returnVehicle outputs the vehicle in a spot and removes it from it's parking Spot.
+
+It checks if the token provided is within bounds of the garage array and then checks if there is a vehicle present.
+If there is, it clears it out and outputs its ID to verify that it was the same vehicle.
+If the vehicle is a bus, it also releases the next 5 spaces before returning to free up the space taken by the bus.
+*/
 void Garage::returnVehicle(int token)
 {
     Vehicle *v;
@@ -127,6 +149,10 @@ void Garage::returnVehicle(int token)
     }
 }
 
+/*
+toString goes through each of the spots in the garage level wise and returns their status represented as a string from their
+toString methods.
+*/
 string Garage::toString()
 {
     string garageString = "\nGarage View: ";
@@ -136,13 +162,18 @@ string Garage::toString()
         if (i % SPOTS_L == 0)
         {
             garageString += "\n";
-            garageString += "LEVEL: " + to_string(LEVELS - i / SPOTS_L) + ": ";
+            garageString += "LEVEL " + to_string(LEVELS - i / SPOTS_L) + ": ";
         }
         garageString += spots[i].toString(); //to_string(spots[i].getType());
     }
     return garageString;
 }
 
+/*
+findFirst finds the first index in the parking garage where the type of spot matches the vehicle and is vacant.
+If no spot can be found it tries to find a bigger spot that is vacant and could still park the vehicle.
+If even that can't be found it returns -1.
+*/
 int Garage::findFirst(int type)
 {
     int idx = -1; // Initialize to error state, returns not found
