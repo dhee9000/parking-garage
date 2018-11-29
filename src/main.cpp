@@ -19,6 +19,21 @@ Driver / runner for the entire project, accepts user input, instantiates garage 
 
 using namespace std;
 
+template<typename myType>
+void getInput(myType &inputVar){
+    
+    cin >> inputVar;
+
+    while (!cin)
+    {
+        cin.clear();           // Restore input stream to working state
+        cin.ignore(100, '\n'); // Get rid of any garbage that user might have entered
+        cout << "Invalid selection! Try again: " << endl;
+        cin >> inputVar; // After cin is restored and any garbage in the stream has been cleared, store user input in number again
+    }
+
+}
+
 int main()
 {
 
@@ -37,7 +52,8 @@ int main()
     while (customGarage != "yes" && customGarage != "no")
     {
         cout << "Would you like to define a custom garage? (yes/no)? >";
-        cin >> customGarage;
+        
+        getInput(customGarage);
     }
 
     if (customGarage == "yes")
@@ -46,13 +62,13 @@ int main()
         do
         {
             cout << "Number of Levels: ";
-            cin >> NUM_OF_LEVELS;
+            getInput(NUM_OF_LEVELS);
 
             cout << "Spots Per Level: ";
-            cin >> SPOTS_PER_LEVEL;
+            getInput(SPOTS_PER_LEVEL);
 
             cout << "Spots Per Row: ";
-            cin >> SPOTS_PER_ROW;
+            getInput(SPOTS_PER_ROW);
 
             cout << "Verifiying Garage Parameters..." << endl;
         } while (!(SPOTS_PER_LEVEL >= SPOTS_PER_ROW && SPOTS_PER_LEVEL % SPOTS_PER_ROW == 0 && NUM_OF_LEVELS > 0 && SPOTS_PER_LEVEL > 0 && SPOTS_PER_ROW > 0 && SPOTS_PER_ROW <= SPOTS_PER_LEVEL));
@@ -85,8 +101,7 @@ int main()
         cout << "(e)xit" << endl;
         cout << "Select One: ";
 
-        cin >> action;
-        cin.ignore(); // Safe Input
+        getInput(action);
 
         cout << endl;
 
@@ -105,7 +120,8 @@ int main()
             cout << "1 - Car" << endl;
             cout << "2 - Bus" << endl;
             cout << "3 - Other" << endl;
-            cin >> vType;
+            
+            getInput(vType);
 
             if (vType < 3 && vType > -1)
             {
@@ -132,7 +148,9 @@ int main()
         {
             int token;
             cout << "Enter the token of the vehicle to return" << endl;
-            cin >> token;
+
+            getInput(token);
+
             cout << "Retrieving vehicle..." << endl;
             myGarage->returnVehicle(token);
             break;
@@ -141,7 +159,8 @@ int main()
         {
             string confirmation = "";
             cout << "Are you sure you'd like to exit? (yes/No): ";
-            cin >> confirmation;
+            
+            getInput(confirmation);
 
             if (confirmation != "yes")
             {

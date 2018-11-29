@@ -34,16 +34,24 @@
             ]
         },
         {
-            "label": "Build & Run",
+            "label": "Build & Run (WSL)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "make run"
+            ]
+        }
+        {
+            "label": "Build & Run (Windows)",
             "type": "shell",
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
-            "command": "bash",
+            "command": "mingw32-make",
             "args": [
-                "-c",
-                "make run"
+                "run"
             ]
         }
     ]

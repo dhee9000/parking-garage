@@ -138,7 +138,7 @@ string Garage::toString()
             garageString += "\n";
             garageString += "LEVEL: " + to_string(LEVELS - i / SPOTS_L) + ": ";
         }
-        garageString += spots[i].toString();
+        garageString += spots[i].toString(); //to_string(spots[i].getType());
     }
     return garageString;
 }
@@ -176,14 +176,13 @@ int Garage::findFirst(int type)
     { // Couldn't find a regular spot to park in, look for alternatives (bigger spot, smaller vehicle)
         if (type < 2)
         {
-            for (int i = 0; i <= size; i++)
+            for (int i = 0; i < size; i++)
             {
                 Spot s = this->spots[i];
-                cout << s.getType() << " ";
                 if (!s.isTaken() && s.getType() > type)
                 {
                     cout << "Matching spot type couldn't be found, using larger spot for small vehicle!" << endl;
-                    cout << "Vehicle is size " << type << " but spot is size " << s.getType() << endl;
+                    cout << "Vehicle is type " << type << " but spot is type " << s.getType() << endl;
                     idx = i;
                     break;
                 }

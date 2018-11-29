@@ -13,11 +13,11 @@ EXECUTABLE	:= ParkingGarageProject.exe
 all: $(BIN)/$(EXECUTABLE)
 
 run: clean all
-	clear
+	cls
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 clean:
-	-rm $(BIN)/*
+	del "$(BIN)\*.exe"
